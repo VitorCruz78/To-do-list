@@ -4,19 +4,18 @@ import { Plus } from 'phosphor-react'
 
 export function Input() {
 
-    let arrayTasks: string[] = []
+    let arrayTasks: any[] = []
     const [nameTask, setNameTask] = useState<string>('')
 
-    function handleCreateNewTask(e: any) {
+    function handleCreateTask(e: any) {
         e.preventDefault()
 
-        arrayTasks.push(nameTask)
+        console.log(nameTask)
     }
-
 
     return (
         <>
-            <FormForInputs>
+            <FormForInputs onSubmit={handleCreateTask}>
                 <label htmlFor="default"></label>
                 <InputStyle
                     id="default"
@@ -27,7 +26,7 @@ export function Input() {
 
                 <ButtonCreateTask
                     type="submit"
-                    onClick={(e) => handleCreateNewTask(e)}
+                    onClick={(e) => handleCreateTask(e)}
                 >
                     Criar
                     <span><Plus fontSize={12} color="#FFF" /></span>

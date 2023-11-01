@@ -1,5 +1,6 @@
 // import { InputTask } from "../../components/InputsTask";
 import { Header } from "../../components/Header";
+import { InputStyle } from "../../components/Inputs/styles";
 import { Container, HeaderTasks, NoTasks } from "./styles";
 import { Scroll } from 'phosphor-react'
 
@@ -18,6 +19,7 @@ export function Home() {
                     <p>Você ainda não tem tarefas cadastradas</p>
                     <p>Crie tarefas e organize seus itens a fazer</p>
                 </NoTasks>
+                {/* <InputStyle placeholder="oi" /> */}
             </Container>
         </>
     )
