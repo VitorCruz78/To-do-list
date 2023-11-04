@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { ButtonCreateTask, FormForInputs, InputStyle } from "./styles";
-import { Plus, Scroll } from 'phosphor-react'
-import { Container, HeaderTasks, NoTasks } from "../../pages/Home/styles";
-import { InputTask } from "../InputsTask";
+import { Plus } from 'phosphor-react'
+import { ContainerTasks } from "../ContainerTasks";
+import { Container, HeaderTasks } from "../../pages/Home/styles";
 
 export function Input() {
-
 
     const [arrayTasks, setArrayTasks] = useState<any[]>([])
     const [nameTask, setNameTask] = useState<string>('')
@@ -14,6 +13,7 @@ export function Input() {
         e.preventDefault()
 
         setArrayTasks(prev => [...prev, nameTask])
+        setNameTask('')
     }
 
     return (
@@ -28,6 +28,7 @@ export function Input() {
                 />
 
                 <ButtonCreateTask
+                    disabled={!nameTask}
                     type="submit"
                     onClick={(e) => handleCreateTask(e)}
                 >
@@ -37,26 +38,13 @@ export function Input() {
             </FormForInputs>
             <Container>
                 <HeaderTasks>
-                    <p id="tasksCreate">Tarefas criadas <span>0</span></p>
+                    <p id="tasksCreate">Tarefas criadas <span>{arrayTasks?.length}</span></p>
                     <p id="conclused">Concluídas <span>0</span></p>
                 </HeaderTasks>
-
-                {
-                    arrayTasks.length === 0
-                        ?
-                        <NoTasks>
-                            <Scroll size={60} weight="light" />
-                            <p>Você ainda não tem tarefas cadastradas</p>
-                            <p>Crie tarefas e organize seus itens a fazer</p>
-                        </NoTasks>
-                        :
-                        arrayTasks.map((tasks: any) => {
-                            return <div>
-                                <InputTask value={tasks} />
-                            </div>
-                        })
-                }
             </Container>
+            <div className="hidden">
+                <ContainerTasks data={arrayTasks} />
+            </div>
         </>
     )
 }

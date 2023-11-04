@@ -3,6 +3,7 @@ import { HeaderContainer } from "./styles";
 import { Input } from "../Inputs";
 
 export function Header() {
+
     return (
         <>
             <HeaderContainer>
@@ -11,10 +12,7 @@ export function Header() {
                     <a href="#">todo</a>
                 </nav>
             </HeaderContainer>
-
-            <div>
-                <Input />
-            </div>
+            <Input />
         </>
     )
 }

@@ -55,4 +55,9 @@ export const ButtonCreateTask = styled.button`
         transition: all ease-in-out;
         transition-duration: 350ms;
     }
+
+    &:disabled {
+        cursor: not-allowed;
+        background: ${props => props.theme["blue-dark"]};
+    }
 `
