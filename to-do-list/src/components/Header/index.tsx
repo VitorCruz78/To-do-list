@@ -1,6 +1,5 @@
 import { Rocket } from "phosphor-react";
 import { HeaderContainer } from "./styles";
-import { Input } from "../Inputs";
 
 export function Header() {
 
@@ -12,7 +11,6 @@ export function Header() {
                     <a href="#">todo</a>
                 </nav>
             </HeaderContainer>
-            <Input />
         </>
     )
 }

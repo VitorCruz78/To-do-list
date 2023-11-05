@@ -1,22 +1,32 @@
-import { useState, createContext } from 'react'
+import { useState } from 'react'
 import { CheckCircle, Circle } from "phosphor-react";
 import { CheckBoxStyle, ContainerSelectedInputs, InputTaskStyle, InputTaskStyleThrough } from "./styles";
 
-export const ConclusedTasksContext = createContext({})
-
-export function InputTask({ value }: any) {
+export function InputTask({ value, sendConclusedTasks, sendCancelTasks }: any) {
 
     const [showConclusedTask, setShowConclusedTask] = useState<boolean>(false)
 
+    function handleConfirmTask() {
+        setShowConclusedTask(true)
+
+        sendConclusedTasks((state: string) => [...state, value])
+    }
+
+    function handleCancelTask() {
+        setShowConclusedTask(false)
+
+        sendCancelTasks((state: string) => [...state, value])
+    }
+
     return (
-        <ConclusedTasksContext.Provider value={showConclusedTask}>
+        <>
             <ContainerSelectedInputs>
                 {
                     !showConclusedTask
                         ?
-                        <CheckBoxStyle onClick={() => setShowConclusedTask(true)}><Circle size={16} color="#4EA8DE" /></CheckBoxStyle>
+                        <CheckBoxStyle onClick={() => handleConfirmTask()}><Circle size={16} color="#4EA8DE" /></CheckBoxStyle>
                         :
-                        <CheckBoxStyle onClick={() => setShowConclusedTask(false)}><CheckCircle size={16} color="#8284FA" /></CheckBoxStyle>
+                        <CheckBoxStyle onClick={() => handleCancelTask()}><CheckCircle size={16} color="#8284FA" /></CheckBoxStyle>
                 }
                 {
                     !showConclusedTask
@@ -28,6 +38,6 @@ export function InputTask({ value }: any) {
                         </InputTaskStyleThrough>
                 }
             </ContainerSelectedInputs>
-        </ConclusedTasksContext.Provider>
+        </>
     )
 }

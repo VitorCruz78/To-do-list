@@ -1,22 +1,20 @@
-import { useState, useContext } from "react";
-import { ButtonCreateTask, FormForInputs, InputStyle } from "./styles";
+import { useState } from "react";
 import { Plus } from 'phosphor-react'
-import { ContainerTasks } from "../ContainerTasks";
-import { Container, HeaderTasks } from "../../pages/Home/styles";
-import { ConclusedTasksContext } from "../InputsTask";
+import { ButtonCreateTask, FormForInputs, InputStyle } from "./styles";
 
-export function Input() {
+interface ChildComponentProps {
+    sendDataToParent: (data: any) => void;
+}
 
-    const value = useContext(ConclusedTasksContext)
-    const [arrayTasks, setArrayTasks] = useState<any[]>([])
+export function Input({ sendDataToParent }: ChildComponentProps) {
+
     const [nameTask, setNameTask] = useState<string>('')
-    console.log(value)
 
     function handleCreateTask(e: any) {
         e.preventDefault()
-
-        setArrayTasks(prev => [...prev, nameTask])
         setNameTask('')
+
+        sendDataToParent((state: string) => [...state, nameTask])
     }
 
     return (
@@ -39,15 +37,6 @@ export function Input() {
                     <span><Plus fontSize={12} color="#FFF" /></span>
                 </ButtonCreateTask>
             </FormForInputs>
-            <Container>
-                <HeaderTasks>
-                    <p id="tasksCreate">Tarefas criadas <span>{arrayTasks?.length}</span></p>
-                    <p id="conclused">Concluídas <span>0</span></p>
-                </HeaderTasks>
-            </Container>
-            <div className="hidden">
-                <ContainerTasks data={arrayTasks} />
-            </div>
         </>
     )
 }

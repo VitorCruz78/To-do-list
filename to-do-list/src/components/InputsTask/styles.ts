@@ -5,6 +5,7 @@ export const ContainerSelectedInputs = styled.div`
     flex-direction: row;
     justify-content: start;
     align-items: center;
+    margin-top: 1rem;
 `
 
 export const CheckBoxStyle = styled.span`
