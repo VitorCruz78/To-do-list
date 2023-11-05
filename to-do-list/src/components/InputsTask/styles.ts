@@ -7,9 +7,11 @@ export const ContainerSelectedInputs = styled.div`
     align-items: center;
 `
 
-export const CheckBoxStyle = styled.input`
+export const CheckBoxStyle = styled.span`
     position: absolute;
     cursor: pointer;
+    margin-top: 5px;
+    margin-left: 10px;
 `
 
 export const InputTaskStyle = styled.input`
@@ -23,13 +25,21 @@ export const InputTaskStyle = styled.input`
     &::placeholder {
         color: ${props => props.theme["gray-100"]};
         font-weight: 500;
-        text-align: left;
-        font-size: 0.75rem;
+        text-align: start;
+        font-size: 0.85rem;
+        padding: 1rem;
     }
 
     &:focus {
         outline: none;
         border: 1px solid ${props => props.theme.purple};
         color: ${props => props.theme["gray-100"]};
+    }
+`
+
+export const InputTaskStyleThrough = styled(InputTaskStyle)`
+    &::placeholder {
+        text-decoration: line-through;
+        color: ${props => props.theme["gray-300"]};
     }
 `

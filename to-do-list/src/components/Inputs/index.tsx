@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { ButtonCreateTask, FormForInputs, InputStyle } from "./styles";
 import { Plus } from 'phosphor-react'
 import { ContainerTasks } from "../ContainerTasks";
 import { Container, HeaderTasks } from "../../pages/Home/styles";
+import { ConclusedTasksContext } from "../InputsTask";
 
 export function Input() {
 
+    const value = useContext(ConclusedTasksContext)
     const [arrayTasks, setArrayTasks] = useState<any[]>([])
     const [nameTask, setNameTask] = useState<string>('')
+    console.log(value)
 
     function handleCreateTask(e: any) {
         e.preventDefault()

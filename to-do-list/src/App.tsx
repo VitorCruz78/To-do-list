@@ -1,6 +1,7 @@
 import { ThemeProvider } from "styled-components"
 import { defaultTheme } from "./styles/Themes/default"
 import { GlobalStyles } from "./styles/global"
+import { ContainerTasks } from "./components/ContainerTasks"
 import { Home } from "./pages/Home"
 
 function App() {
