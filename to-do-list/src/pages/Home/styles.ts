@@ -53,3 +53,8 @@ export const NoTasks = styled.div`
     gap: 0.5rem;
     color: ${props => props.theme["gray-300"]};
 `
+
+export const ContainerInputsTasks = styled.div`
+    overflow-y: scroll;
+    max-height: 400px;
+`

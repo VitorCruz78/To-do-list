@@ -1,18 +1,27 @@
 import styled from "styled-components";
 
 export const ContainerSelectedInputs = styled.div`
+    position: relative;
     display: flex;
     flex-direction: row;
-    justify-content: start;
     align-items: center;
     margin-top: 1rem;
 `
 
-export const CheckBoxStyle = styled.span`
+export const ContainerIcons = styled.div`
+`
+
+export const CheckBoxStyle = styled.p`
     position: absolute;
     cursor: pointer;
     margin-top: 5px;
     margin-left: 10px;
+`
+
+export const TrashStyle = styled.p`
+    position: absolute;
+    cursor: pointer;
+    margin-top: 5px;
 `
 
 export const InputTaskStyle = styled.input`

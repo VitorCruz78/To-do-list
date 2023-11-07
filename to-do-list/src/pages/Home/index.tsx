@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Scroll } from "phosphor-react"
 import { Header } from "../../components/Header"
 import { Input } from "../../components/Inputs"
-import { Container, HeaderTasks, NoTasks } from "./styles"
+import { Container, ContainerInputsTasks, HeaderTasks, NoTasks } from "./styles"
 import { InputTask } from '../../components/InputsTask'
 
 export function Home() {
@@ -11,7 +11,7 @@ export function Home() {
     const [conclusedTasks, setConclusedTasks] = useState([])
     const [cancelTasks, setCancelTasks] = useState([])
 
-    const handleDataFromChild = (data: []) => {
+    const handleCreatedTask = (data: []) => {
         setCreatedTasks(data)
     }
 
@@ -28,7 +28,7 @@ export function Home() {
     return (
         <>
             <Header />
-            <Input sendDataToParent={handleDataFromChild} />
+            <Input sendDataToParent={handleCreatedTask} />
             <Container>
                 <HeaderTasks>
                     <p id="tasksCreate">Tarefas criadas <span>{createdTasks?.length}</span></p>
@@ -43,9 +43,23 @@ export function Home() {
                             <p>Crie tarefas e organize seus itens a fazer</p>
                         </NoTasks>
                         :
-                        createdTasks?.map(tasks => {
-                            return <InputTask sendConclusedTasks={handleConclusedTasks} sendCancelTasks={handleCancelTasks} value={tasks} />
-                        })
+                        createdTasks?.length > 6
+                            ?
+                            <ContainerInputsTasks>
+                                {
+                                    createdTasks?.map(tasks => {
+                                        return <InputTask sendConclusedTasks={handleConclusedTasks} sendCancelTasks={handleCancelTasks} value={tasks} />
+                                    })
+                                }
+                            </ContainerInputsTasks>
+                            :
+                            <>
+                                {
+                                    createdTasks?.map(tasks => {
+                                        return <InputTask sendConclusedTasks={handleConclusedTasks} sendCancelTasks={handleCancelTasks} value={tasks} />
+                                    })
+                                }
+                            </>
                 }
             </Container>
         </>
