@@ -9,19 +9,23 @@ export const ContainerSelectedInputs = styled.div`
 `
 
 export const ContainerIcons = styled.div`
+    position: absolute;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 `
 
 export const CheckBoxStyle = styled.p`
-    position: absolute;
     cursor: pointer;
     margin-top: 5px;
     margin-left: 10px;
 `
 
 export const TrashStyle = styled.p`
-    position: absolute;
     cursor: pointer;
     margin-top: 5px;
+    margin-right: 10px;
 `
 
 export const InputTaskStyle = styled.input`

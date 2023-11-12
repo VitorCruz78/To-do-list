@@ -7,9 +7,9 @@ import { InputTask } from '../../components/InputsTask'
 
 export function Home() {
 
-    const [createdTasks, setCreatedTasks] = useState([])
-    const [conclusedTasks, setConclusedTasks] = useState([])
-    const [cancelTasks, setCancelTasks] = useState([])
+    const [createdTasks, setCreatedTasks] = useState<string[]>([])
+    const [conclusedTasks, setConclusedTasks] = useState<string[]>([])
+    const [cancelTasks, setCancelTasks] = useState<string[]>([])
 
     const handleCreatedTask = (data: []) => {
         setCreatedTasks(data)
@@ -21,6 +21,12 @@ export function Home() {
 
     const handleCancelTasks = (items: []) => {
         setCancelTasks(items)
+    }
+
+    const handleDeleteTask = (taskToDelete: string) => {
+        setConclusedTasks((state: string[]) => state.filter(task => task !== taskToDelete));
+        setCancelTasks((state: string[]) => state.filter(task => task !== taskToDelete));
+        setCreatedTasks((state: string[]) => state.filter(task => task !== taskToDelete));
     }
 
     const controlledTasks = conclusedTasks?.length - cancelTasks?.length
@@ -47,16 +53,26 @@ export function Home() {
                             ?
                             <ContainerInputsTasks>
                                 {
-                                    createdTasks?.map(tasks => {
-                                        return <InputTask sendConclusedTasks={handleConclusedTasks} sendCancelTasks={handleCancelTasks} value={tasks} />
+                                    createdTasks?.map(task => {
+                                        return <InputTask
+                                            key={task}
+                                            sendConclusedTasks={handleConclusedTasks}
+                                            sendCancelTasks={handleCancelTasks}
+                                            sendDeleteTasks={handleDeleteTask}
+                                            value={task} />
                                     })
                                 }
                             </ContainerInputsTasks>
                             :
                             <>
                                 {
-                                    createdTasks?.map(tasks => {
-                                        return <InputTask sendConclusedTasks={handleConclusedTasks} sendCancelTasks={handleCancelTasks} value={tasks} />
+                                    createdTasks?.map(task => {
+                                        return <InputTask
+                                            key={task}
+                                            sendConclusedTasks={handleConclusedTasks}
+                                            sendCancelTasks={handleCancelTasks}
+                                            sendDeleteTasks={handleDeleteTask}
+                                            value={task} />
                                     })
                                 }
                             </>
